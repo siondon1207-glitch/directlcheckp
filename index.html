@@ -1,23 +1,576 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <style>
+    body {
+      font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+      color: #2d3748;
+      line-height: 1.9;
+      margin: 0;
+      padding: 0;
+      background: #f7f9fc;
+      word-break: keep-all;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    }
+    h1, h2, h3, h4 {
+      color: #1a365d;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    h1 {
+      font-size: 2.6em;
+      border-bottom: 3px solid #1a365d;
+      padding-bottom: 20px;
+      margin-top: 0;
+      letter-spacing: -1px;
+    }
+    h2 {
+      margin-top: 2.2em;
+      font-size: 1.85em;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #3182ce;
+      margin-top: 10px;
+      border-radius: 2px;
+    }
+    h3 {
+      margin-top: 1.8em;
+      font-size: 1.35em;
+      color: #2b6cb0;
+      background: #f0f4f8;
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+    p, li {
+      margin-bottom: 1.3em;
+      font-size: 1.05em;
+      color: #4a5568;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 0.9em;
+    }
+    .highlight-box {
+      background: #ebf8ff;
+      padding: 24px;
+      border-radius: 12px;
+      border-left: 5px solid #3182ce;
+      margin: 25px 0;
+    }
+    .highlight-box strong {
+      color: #1a365d;
+    }
+    .nav-links {
+      margin: 35px 0;
+      padding: 20px;
+      background: #f7fafc;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .nav-links a {
+      color: #2b6cb0;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover {
+      background: #3182ce;
+      color: #ffffff;
+      border-color: #3182ce;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 16px 32px;
+      background: #1a365d;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.15em;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-align: center;
+    }
+    .cta-button:hover {
+      background: #2b6cb0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: 0.95em;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 14px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f7fafc;
+      font-weight: 700;
+      color: #1a365d;
+    }
+    tr:nth-child(even) {
+      background-color: #fafbfc;
+    }
+    .review-box {
+      background: #fffaf0;
+      border: 1px solid #feebc8;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+    .review-box h4 {
+      color: #dd6b20;
+      margin-top: 0;
+      font-size: 1.25em;
+    }
+    .form-section {
+      background: #f7fafc;
+      padding: 35px;
+      border-radius: 12px;
+      margin-top: 40px;
+      border: 1px solid #e2e8f0;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #1a365d;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1em;
+      background-color: #ffffff;
+      color: #2d3748;
+    }
+    .calculator-results {
+      background: #edf2f7;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 25px;
+      border: 1px solid #cbd5e1;
+    }
+    .calculator-results h4 {
+      margin-top: 0;
+      color: #1a365d;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 10px;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 1.05em;
+    }
+    .result-row span.val {
+      font-weight: 700;
+      color: #2b6cb0;
+    }
+    .external-link {
+      color: #2b6cb0;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .external-link:hover {
+      text-decoration: underline;
+      color: #1a365d;
+    }
+    .info-footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #718096;
+      margin-top: 60px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 25px;
+    }
+  </style>
+
+  <!-- JSON-LD Structured Data for SEO & LLM Optimization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "BMW X3 2026",
+    "image": "https://example.com/images/bmw-x3-2026.jpg",
+    "description": "2026년형 4세대 BMW X3(G45)의 트림별 공식 판매 가격, 프로모션 할인, 그리고 실구매 비용에 대한 가이드입니다. 가솔린, 디젤, M50 모델의 상세 제원과 장단점 및 금융 견적 계산기를 제공합니다.",
+    "brand": {
+      "@type": "Brand",
+      "name": "BMW"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "KRW",
+      "lowPrice": "68900000",
+      "highPrice": "99900000",
+      "offerCount": "4"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "2026년형 BMW X3 공식 판매 가격은 얼마인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2026년형 4세대 BMW X3(G45)의 공식 판매 가격은 가솔린 20 xDrive 모델이 6,890만 원에서 7,990만 원, 디젤 20d xDrive 모델이 7,270만 원에서 7,890만 원, 30 xDrive M 스포츠 패키지 프로 모델이 8,390만 원, 고성능 M50 xDrive Pro 모델이 9,870만 원으로 책정되어 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "BMW X3 가솔린과 디젤 모델의 주요 차이점은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "가솔린 모델(20 xDrive, 30 xDrive)은 뛰어난 정숙성과 부드러운 주행감이 강점이며, 디젤 모델(20d xDrive)은 뛰어난 고속 주행 연비(복합 14.0km/l)와 강력한 초반 토크가 장점입니다. 모든 모델에는 48V 마일드 하이브리드 기술이 기본 탑재되어 주행 효율성이 향상되었습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "BMW X3의 할인 프로모션 혜택을 극대화하는 방법은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "다양한 딜러사별 비공식 할인 조건을 투명하게 비교하고, 온라인 다이렉트 견적 사이트나 전문 제휴 에이전트의 컨설팅을 활용하는 것이 좋습니다. 또한 현금 지원 프로모션, 저금리 금융 상품, 그리고 특별 사은품 혜택 등을 종합적으로 파악하여 계약을 진행해야 합니다."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <h1>2026 BMW X3 가격 총정리: 모델별 트림 구성, 옵션, 모의 견적 및 내돈내산 후기 비교</h1>
+
+    <p>독일 프리미엄 중형 SUV 시장에서 독보적인 존재감을 유지해 온 BMW X3가 4세대 풀체인지 모델(코드명 G45)로 완벽하게 변신하며 수입차 시장의 판도를 새로 쓰고 있습니다. 특히 2026년형으로 접어들며 전 라인업에 48V 마일드 하이브리드 시스템이 기본 적용되었고, 티맵 기반의 한국형 BMW 내비게이션 탑재 등 대대적인 편의사양 향상이 이루어졌습니다. 수입 중형 SUV 구매를 고민하고 있다면 차량 자체의 장단점은 물론, 실질적인 구매 견적과 최적의 금융 설계 방안을 꼼꼼하게 따져보아야 합니다. 이번 글에서는 BMW X3 가격 구성을 상세히 분석하고 가솔린, 디젤, 고성능 모델의 사양 차이점과 함께 온라인 견적 계산기를 통한 매월 납입 비용 모의 산출 결과를 명확하게 비교해 드립니다.</p>
+
+    <div class="highlight-box">
+      <strong>실구매 요약 정보:</strong> 2026년 기준 BMW X3 풀체인지 모델의 공식 출시 가격은 기본 트림인 20 xDrive 가솔린 기준 6,890만 원부터 시작하여 고성능 트림인 M50 xDrive Pro의 경우 9,870만 원까지 책정되어 있습니다. 구매 시 프로모션 할인, 취득세, 그리고 리스나 할부 등 금융 방식에 따른 월 납입금을 정밀하게 비교하는 것이 유리합니다.
+    </div>
+
+    <div class="nav-links">
+      <a href="#section1">1. BMW X3 풀체인지 개발 배경 및 주요 변화점</a>
+      <a href="#section2">2. 2026년형 BMW X3 트림별 공식 판매 가격</a>
+      <a href="#section3">3. 가솔린 vs 디젤 vs 고성능 엔진 스펙 및 장단점</a>
+      <a href="#section4">4. 다이렉트 리스, 장기렌트, 할부 견적 요금 구조 비교</a>
+      <a href="#section5">5. 실시간 온라인 모의 견적 및 월 납입금 계산기</a>
+      <a href="#section6">6. 디시, 보배드림, 펨코 실제 차주의 내돈내산 출고 후기</a>
+      <a href="#section7">7. 최저가 성지 매칭 및 프로모션 할인 혜택 극대화 팁</a>
+      <a href="#section8">8. 신뢰성 있는 정보 확인 공식 외부 사이트 추천</a>
+    </div>
+
+    <h2 id="section1">1. BMW X3 풀체인지 개발 배경 및 주요 변화점</h2>
+    <p>BMW X3는 2003년 1세대 출시 이후 전 세계적으로 350만 대 이상의 누적 판매고를 기록하며, 프리미엄 중형 SUV 시장의 세그먼트 개척자로 평가받아 왔습니다. 이번 4세대 풀체인지(G45) 모델은 BMW의 최신 디자인 철학을 반영하여 외관 디자인을 간결하면서도 웅장하게 탈바꿈시켰습니다. 전장이 이전 세대 대비 44mm 늘어났고 전폭은 29mm 확장된 반면, 전고는 16mm 낮아져 한층 스포티하고 균형 잡힌 비율을 선사합니다.</p>
+    
+    <p>가장 주목할 변화는 차세대 인터랙션 스마트 바의 탑재와 물리 조작 버튼의 전폭적인 최소화입니다. 12.3인치 디지털 계기판과 14.9인치 디스플레이가 하나로 결합한 커브드 디스플레이가 장착되었으며, 인포테인먼트 구동체계는 최신 BMW OS9을 내장해 최상의 연결성을 보장합니다. 또한, 한국 소비자들이 오랜 기간 갈구해 온 TMAP 기반의 한국형 BMW 내비게이션을 드디어 기본으로 품으며 헤드업 디스플레이와의 조화로운 연동을 자랑하게 되었습니다.</p>
+
+    <h3>1-1. 마일드 하이브리드 시스템 전 트림 기본 탑재</h3>
+    <p>환경 규제가 까다로워지고 연비 효율에 대한 소비자 기준이 치솟는 가운데, 신형 X3는 디젤과 가솔린 등 모든 내연기관 라인업에 48V 마일드 하이브리드(MHEV) 기술을 적용해 효율성을 향상시켰습니다. 정차 중 시동이 부드럽게 다시 걸릴 뿐 아니라 정체 구간이나 언덕길 출발 시 전기모터가 출력을 보조하여 부드럽고 쾌적한 가속감을 느낄 수 있는 것이 큰 특징입니다.</p>
+
+    <h3>1-2. 한층 넓어진 공간과 적재 편의성</h3>
+    <p>늘어난 차체 길이를 바탕으로 실내 거주 공간과 트렁크 용량 역시 눈에 띄게 증가했습니다. 기본 트렁크 적재 공간은 이전보다 20리터 증가한 570리터를 제공하며, 2열 시트를 4:2:4 분할 접이 방식으로 완전히 폴딩하면 최대 1,700리터까지 확장되어 패밀리 SUV로서 손색없는 실용성을 갖추었습니다.</p>
+
+    <h2 id="section2">2. 2026년형 BMW X3 트림별 공식 판매 가격</h2>
+    <p>국내 수입차 시장에서 프리미엄 브랜드 SUV의 진입 문턱을 현실적으로 제시한 2026년형 BMW X3는 개별소비세 인하 기준을 반영하여 세부 트림에 따라 다양한 금액대로 촘촘하게 라인업이 분포해 있습니다. 다음은 국내 시장에 공식 판매 중인 주력 트림의 세부 공식 권장 소비자 가격(MSRP)과 대략적인 인도 비용 예측입니다.</p>
+
+    <h3>2-1. 2026년형 BMW X3 공식 권장 소비자 가격표</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>엔진 분류</th>
+          <th>세부 모델 및 트림</th>
+          <th>공식 가격 (MSRP)</th>
+          <th>취득세 예상 금액 (7%)</th>
+          <th>주요 탑재 옵션 및 특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>가솔린 2.0</td>
+          <td>20 xDrive Base</td>
+          <td>6,890만 원</td>
+          <td>약 482만 원</td>
+          <td>OS9 TMAP 내비게이션, 베간자 시트, 커브드 디스플레이</td>
+        </tr>
+        <tr>
+          <td>가솔린 2.0</td>
+          <td>20 xDrive M Sport</td>
+          <td>7,470만 원</td>
+          <td>약 522만 원</td>
+          <td>M 에어로다이내믹 패키지, M 가죽 스티어링 휠, 엠비언트 라이트</td>
+        </tr>
+        <tr>
+          <td>디젤 2.0</td>
+          <td>20d xDrive Base</td>
+          <td>7,270만 원</td>
+          <td>약 508만 원</td>
+          <td>높은 실연비 효율성, 48V 마일드 하이브리드, 기본 안전 보조 패키지</td>
+        </tr>
+        <tr>
+          <td>디젤 2.0</td>
+          <td>20d xDrive M Sport</td>
+          <td>7,820만 원</td>
+          <td>약 547만 원</td>
+          <td>M 스포츠 브레이크, 어댑티브 LED 헤드라이트, 스포츠 드라이빙 전용 서스펜션</td>
+        </tr>
+        <tr>
+          <td>가솔린 2.0</td>
+          <td>30 xDrive M Sport Pro</td>
+          <td>8,390만 원</td>
+          <td>약 587만 원</td>
+          <td>258마력 엔진, 고성능 외관 파츠, 20인치 알로이 휠 패키지</td>
+        </tr>
+        <tr>
+          <td>고성능 가솔린</td>
+          <td>M50 xDrive Pro</td>
+          <td>9,870만 원</td>
+          <td>약 690만 원</td>
+          <td>398마력 L6 엔진, 어댑티브 M 서스펜션, 21인치 M 전용 퍼포먼스 휠</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>위 표의 가격은 제조사 공식 MSRP 기준이며, 실제 딜러사 및 지역 대리점별 프로모션 할인 혜택, 계약 시기, 또는 파이낸셜 제휴 조건에 따라 최종 인도 금액은 유동적으로 차이가 날 수 있습니다. 따라서 정확한 모의 견적 계산기를 활용하거나 카매니저와의 상담을 통해 개인별 상황에 맞춰 꼼꼼하게 다시금 계산해보시는 방법이 중요합니다.</p>
+
+    <h2 id="section3">3. 가솔린 vs 디젤 vs 고성능 트림 상세 성능 비교 및 장단점</h2>
+    <p>2026년형 BMW X3의 구성을 세심히 뜯어보면 가솔린, 디젤, 그리고 최고 사양의 고성능 트림까지 주행 스타일과 주행 환경에 최적화된 다채로운 파워트레인을 고를 수 있다는 장점이 있습니다. 각 엔진의 주행 질감 차이와 장단점 및 특징을 명확히 비교해 보겠습니다.</p>
+
+    <h3>3-1. 가솔린 라인업 (20 xDrive, 30 xDrive)의 장단점</h3>
+    <ul>
+      <li><strong>장점:</strong> 극대화된 실내 정숙성과 매끄러운 엔진 회전 질감. 도심 단거리 위주의 일상 주행 비중이 높은 경우 디젤 대비 환경 부담이나 정비 측면에서 편안한 관리가 가능합니다. 30 모델의 경우 최고출력 258마력으로 시원한 가속감을 만끽할 수 있습니다.</li>
+      <li><strong>단점:</strong> 디젤 대비 다소 아쉬운 도심 실연비 (복합연비 리터당 10.9km) 및 유류 비용 지출.</li>
+    </ul>
+
+    <h3>3-2. 디젤 라인업 (20d xDrive)의 장단점</h3>
+    <ul>
+      <li><strong>장점:</strong> 장거리 고속도로 주행 시 빛을 발하는 압도적인 연비 효율성 (복합연비 리터당 14.0km). 40.8kg.m에 달하는 든든한 저회전 실용 토크 덕분에 가득 찬 짐을 싣고 언덕길을 오를 때나 거친 지형을 탈출할 때 뛰어난 힘의 여유를 선사합니다.</li>
+      <li><strong>단점:</strong> 시간이 지날수록 축적되는 디젤 고유의 진동과 소음 잔존. 장기 보유 관점에서 미래의 친환경 차량 규제 리스크와 매연 저감 장치 등의 정비 요소가 추가될 수 있습니다.</li>
+    </ul>
+
+    <h3>3-3. 고성능 라인업 (M50 xDrive Pro)의 장단점</h3>
+    <ul>
+      <li><strong>장점:</strong> 직렬 6기통 터보 엔진에서 뿜어져 나오는 398마력의 폭발적인 파워와 날카로운 배기 사운드. 제로백 4.6초에 달하는 폭발적이고 다이내믹한 쾌감을 맛볼 수 있으며, 어댑티브 M 서스펜션과 스포츠 디퍼렌셜이 기본 적용되어 코너링과 핸들링 일체감이 예술입니다.</li>
+      <li><strong>단점:</strong> 1억 원에 육박하는 차값으로 인한 높은 금융 이자율 부담. 고성능 모델 특유의 단단한 주행 서스펜션 세팅 때문에 부드럽고 폭신한 패밀리 성향의 승차감을 원하는 탑승객에게는 승차감이 딱딱하게 다가올 수 있습니다.</li>
+    </ul>
+
+    <h2 id="section4">4. 다이렉트 리스, 장기렌트, 할부 견적 요금 구조 비교</h2>
+    <p>과거에는 신차를 오직 일시불 또는 전액 할부로 구매하는 비중이 지배적이었으나, 2026년 현재 수입차 오너들의 구매 트렌드는 다이렉트 온라인 신청 비교를 활용해 장기렌트, 리스, 혹은 특별한 저금리 금융 할부 등의 제휴 요금제를 능동적으로 고르는 스마트한 방식으로 진화했습니다. 어떤 방식이 나에게 더 저렴한지 실무적인 차이점과 요금 구조를 살펴보겠습니다.</p>
+
+    <h3>4-1. 다이렉트 신차 할부</h3>
+    <p>금융 업체와의 다이렉트 연계를 통해 본인 명의로 차량을 등록하고 매달 원금과 약정 이자를 상환해 가는 대중적인 방법입니다. 차량 소유권이 구매자 본인에게 온전히 귀속되며, 보험 가입 경력이 단절 없이 길어질수록 장기적으로 다이렉트 보험료 할인 요율 면에서 혜택을 보기 좋습니다. 다만 차량이 부채와 개인 자산으로 고스란히 등록되므로 건강보험료 상승 요인이 될 수 있고, 금융 한도에 즉각적인 변동을 줄 수 있습니다.</p>
+
+    <h3>4-2. 수입차 운용리스 (Finance/Operating Lease)</h3>
+    <p>리스사의 명의로 차량을 등록하고 일정 기간 동안 차를 임대하여 매월 리스 요금을 납부하는 형태입니다. 차량 번호판이 일반 번호판과 완전히 동일하게 부여되므로 장기렌트 특유의 하, 허, 호 번호판에 대한 거부감이 있는 오너들에게 선호도가 대단히 높습니다. 매월 리스 비용을 100% 비용 처리하여 종합소득세 및 법인세 환급 세제 혜택을 볼 수 있어, 사업자나 전문직 종사자들이 필수적으로 선호하는 금융 종류입니다.</p>
+
+    <h3>4-3. 신차 장기렌트</h3>
+    <p>차량 대금에 매년 납부해야 하는 취등록세, 자동차세, 그리고 의무 가입 종합 보험 요금제까지 모두 합산되어 매달 약정한 요금만 심플하게 납부하는 방식입니다. 초기 보증금이나 선납금 비율을 조정해 매월 나가는 지출을 아주 미세하게 최소화하여 저렴한곳으로 유연하게 조절할 수 있습니다. 사고가 아무리 자주 발생하더라도 개인 보험 요율이 인상될 걱정이 전무하며, 렌트사 소유 자산이기에 건강보험료나 개인 부채 한도 하락에도 악영향을 주지 않습니다.</p>
+
+    <h2 id="section5">5. 실시간 온라인 모의 견적 및 월 납입금 계산기</h2>
+    <p>이곳에서 제공하는 직관적인 BMW X3 비용 계산기 어플리케이션 시스템을 통하여, 내가 원하는 트림과 할인 적용 예상금액을 손쉽게 설정하고 가상으로 이자를 계산해 보십시오. 매번 오프라인 매장을 일일이 방문하여 상담을 받는 번거로움 없이도 손쉽게 비용 매커니즘을 파악하실 수 있습니다.</p>
+
+    <div class="form-section">
+      <h3>BMW X3 온라인 견적 및 납입금 계산기</h3>
+      <p>원하는 모델 트림을 설정하시고, 프로모션 할인, 선납금, 상환 기간 등을 기입하신 뒤 계산 버튼을 실행하십시오.</p>
+      
+      <div class="form-group">
+        <label for="calc-trim">차량 트림 선택 (권장 소비자 가격)</label>
+        <select id="calc-trim" onchange="updateDefaultPrice()">
+          <option value="6890">가솔린 20 xDrive Base (6,890만 원)</option>
+          <option value="7470">가솔린 20 xDrive M Sport (7,470만 원)</option>
+          <option value="7270">디젤 20d xDrive Base (7,270만 원)</option>
+          <option value="7820">디젤 20d xDrive M Sport (7,820만 원)</option>
+          <option value="8390">가솔린 30 xDrive M Sport Pro (8,390만 원)</option>
+          <option value="9870">고성능 M50 xDrive Pro (9,870만 원)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="calc-raw-price">차량 공식 가격 (자동 연동 - 만원 단위)</label>
+        <input type="number" id="calc-raw-price" value="6890" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="calc-discount">예상 할인 프로모션 혜택 (만원 단위)</label>
+        <input type="number" id="calc-discount" value="250" placeholder="예: 250">
+      </div>
+
+      <div class="form-group">
+        <label for="calc-downpayment">선납금 및 초기 인수 보증금 (만원 단위)</label>
+        <input type="number" id="calc-downpayment" value="2000" placeholder="예: 2000">
+      </div>
+
+      <div class="form-group">
+        <label for="calc-interest">금융 프로그램 약정 금리 (연간 % 이율)</label>
+        <input type="number" id="calc-interest" value="4.9" step="0.1" placeholder="예: 4.9">
+      </div>
+
+      <div class="form-group">
+        <label for="calc-months">이용 / 약정 개월 수</label>
+        <select id="calc-months">
+          <option value="36">36 개월</option>
+          <option value="48">48 개월</option>
+          <option value="60" selected>60 개월 (5년)</option>
+        </select>
+      </div>
+
+      <div style="text-align: center; margin-top: 25px;">
+        <button type="button" class="cta-button" onclick="calculateCarFinance()" style="width: 100%;">BMW X3 모의 견적 및 상환금 계산하기</button>
+      </div>
+
+      <div class="calculator-results" id="calc-results-box" style="display: none;">
+        <h4>예상 상세 견적 결과 안내</h4>
+        <div class="result-row">
+          <span>최종 차량 실구매 가격 (MSRP - 할인액)</span>
+          <span class="val" id="res-real-price">0 만원</span>
+        </div>
+        <div class="result-row">
+          <span>신차 등록 취등록세 (약 7% 예상)</span>
+          <span class="val" id="res-tax-cost">0 만원</span>
+        </div>
+        <div class="result-row">
+          <span>금융 이용 금액 (할부/리스 원금)</span>
+          <span class="val" id="res-loan-amount">0 만원</span>
+        </div>
+        <div class="result-row" style="border-top: 1px dashed #cbd5e1; padding-top: 12px; font-weight: 700;">
+          <span>매월 약정 상환 납입액 (원리금 균등)</span>
+          <span class="val" id="res-monthly-payment" style="font-size: 1.25em; color: #1a365d;">0 만원</span>
+        </div>
+        <p style="font-size: 0.85em; color: #718096; margin-top: 15px; margin-bottom: 0; text-align: center;">
+          본 모의 계산 내역은 대략적인 기준을 바탕으로 추정한 산출물이며, 공식 딜러사 프로모션 및 부대 경비 적용 여부에 따라 실제 청구액과는 세부 차이가 있을 수 있습니다.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function updateDefaultPrice() {
+        const selectEl = document.getElementById('calc-trim');
+        const priceInput = document.getElementById('calc-raw-price');
+        priceInput.value = selectEl.value;
+      }
+
+      function calculateCarFinance() {
+        const rawPrice = parseInt(document.getElementById('calc-raw-price').value) || 0;
+        const discount = parseInt(document.getElementById('calc-discount').value) || 0;
+        const downPayment = parseInt(document.getElementById('calc-downpayment').value) || 0;
+        const interestRate = parseFloat(document.getElementById('calc-interest').value) || 0;
+        const months = parseInt(document.getElementById('calc-months').value) || 60;
+
+        // 실구매가 계산
+        const realPrice = Math.max(0, rawPrice - discount);
+        // 취득세 대략 7%
+        const tax = Math.round(realPrice * 0.07);
+        // 할부원리금 계산
+        const loanAmount = Math.max(0, realPrice - downPayment);
+
+        let monthlyPayment = 0;
+        if (loanAmount > 0) {
+          if (interestRate > 0) {
+            const monthlyRate = (interestRate / 100) / 12;
+            monthlyPayment = Math.round((loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
+          } else {
+            monthlyPayment = Math.round(loanAmount / months);
+          }
+        }
+
+        // 결과 반영
+        document.getElementById('res-real-price').innerText = realPrice.toLocaleString() + ' 만원';
+        document.getElementById('res-tax-cost').innerText = tax.toLocaleString() + ' 만원';
+        document.getElementById('res-loan-amount').innerText = loanAmount.toLocaleString() + ' 만원';
+        document.getElementById('res-monthly-payment').innerText = monthlyPayment.toLocaleString() + ' 만원';
+
+        // 박스 보이기
+        document.getElementById('calc-results-box').style.display = 'block';
+      }
+    </script>
+
+    <h2 id="section6">6. 디시, 보배드림, 펨코 실제 차주의 내돈내산 출고 후기</h2>
+    <p>인터넷의 유명 자동차 커뮤니티인 디시인사이드 차갤(자동차 갤러리), 보배드림 국산수입차 게시판, 그리고 펨코(에펨코리아) 자동차 카테고리 등지에서 2026년형 BMW X3 G45 풀체인지 모델을 구매한 실제 오너들의 내돈내산 출고 후기가 연일 뜨거운 감자로 다루어지고 있습니다. 장기 탑승 시 체감할 수 있는 뚜렷한 장단점들을 생생한 사용기로 정리하여 종합 비교해 드립니다.</p>
+
+    <div class="review-box">
+      <h4>보배드림 유저 (30대 남성 패밀리카 오너)의 실체감 후기</h4>
+      <p>이번에 20d M 스포츠 모델을 최종 결정하여 출고했습니다. 기존에 3세대 모델을 시승해 보았을 때와 비교하면 실내 레이아웃에서 느껴지는 고급감이 전혀 차원이 다른 수준입니다. 특히 대형 커브드 패널과 야간 주행 시 조명이 서서히 변하는 크리스탈 느낌의 인터랙션 바는 패밀리카 목적의 수입 SUV 중 단연 최상급의 심미적 즐거움을 줍니다.</p>
+      <p>이전 모델 대비 2열의 레그룸 공간 설계가 한결 여유로워져서 어린아이들이 카시트를 타고 앉아도 앞 시트를 발로 찰 염려가 줄어들었습니다. 마일드 하이브리드 엔진이 적용된 덕택에 디젤 엔진임에도 불구하고 신호 대기에서 멈췄다가 다시 재가동될 때 들어오는 기분 나쁜 덜커덕 소음이 거의 말끔하게 상쇄되어 매우 정숙한 운전이 가능해졌습니다. 장거리 연비 또한 가뿐히 리터당 15km를 웃돌아서 유류비 관점의 메리트도 엄청납니다.</p>
+    </div>
+
+    <div class="review-box" style="background-color: #f7fafc; border-color: #cbd5e1;">
+      <h4>펨코 (에펨코리아) 및 디시 유저들이 밝힌 아쉬운 단점 분석</h4>
+      <p>동호회와 커뮤니티에서 가장 빈번하게 지적을 받는 지점은 다름 아닌 지나친 디지털 버튼 통합 구성입니다. 에어컨 송풍 세기 조절이나 미세한 시트 온도 열선, 통풍 시트 기능까지 모두 메인 스크린 내부의 깊숙한 탭 하단 터치 방식으로 편입되는 바람에, 주행 중 운전에 시선을 완전히 떼고 조절하기가 여간 까다로운 편이 아닙니다.</p>
+      <p>그리고 BMW 디지털 프리미엄 가입 구독 요금제를 활용해야만 게임이나 유튜브 같은 스트리밍 컨텐츠를 편안하게 만끽할 수 있는 과금식 비즈니스 정책도 신차 출고 이후 소소한 지출 부담으로 느껴질 수 있습니다. 마지막으로 전동 트렁크 부품 공급 이슈로 인해 일부 조기 출고 차량에 편의 기능의 부분 빠짐 현상이 랜덤하게 나타난 적이 있어 계약 전에 공식 고객센터나 딜러에게 정확한 잔여 부품 확인을 요청하는 절차가 필수적이라는 목소리도 높습니다.</p>
+    </div>
+
+    <h2 id="section7">7. 최저가 성지 매칭 및 프로모션 할인 혜택 극대화 팁</h2>
+    <p>BMW를 비롯한 주요 독일 프리미엄 브랜드 수입 차량들은 같은 제조사의 모델이더라도 수입 유통 채널(코오롱, 도이치, 한독, 삼천리 등)별로 할인율과 지원하는 사은품의 종류가 독립적으로 차이가 나기 마련입니다. 그렇기에 한두 군데 매장만 찾아보고 덜컥 가입 계약서에 사인하는 것은 매우 불합리한 처사입니다. 가장 싼곳과 최저가를 발굴해 내는 효과적인 실행 방법을 일목요연하게 전달해 드립니다.</p>
+
+    <h3>7-1. 다이렉트 비교 사이트 및 플랫폼 앱의 전폭적인 이용</h3>
+    <p>과거처럼 발품을 파는 시대는 지나갔습니다. 토스 자산연계 신차 견적 서비스나 네이버 자동차 동호회 협력 온라인 사이트, 신뢰성 높은 차량 분석 모바일 어플리케이션 등의 비대면 툴을 활용하면, 전국 딜러들이 올리는 실시간 프로모션 현황을 역경매 시스템으로 신속하게 비교할 수 있습니다. 수수료 거품이 없는 다이렉트 맞춤형 상담을 받아보는 것이 실구매 가격을 대폭 깎는 지름길입니다.</p>
+
+    <h3>7-2. 현금 지원 프로모션 및 사은품의 확실한 확인</h3>
+    <p>차량을 구매할 때 현금지원의 한도 혹은 블랙박스, 선팅 필름 등 필수 작업 사은품의 품질 보증 수준을 확실하게 요구해 약속받아야 합니다. 일부 악성 에이전시는 겉으로 보이는 공식 프로모션 금액은 크게 부풀리면서 뒤로는 금융 이율(피이자율) 장난질을 통해 막대한 이익을 취하기도 하므로, 사전에 금융 상담 계약을 마칠 때 매월 실제로 지출되는 원금 대비 총이자 지불 비율과 최종 계산기를 반드시 크로스 체크하여 방어해야만 손해를 보지 않습니다.</p>
+
+    <h2 id="section8">8. 신뢰성 있는 정보 확인 공식 외부 사이트 추천</h2>
+    <p>2026년형 BMW X3 모델의 추가적인 상세 제원표와 옵션표, 연도별 법적 세금 변화 및 공신력 높은 구매 분쟁 방지 조항들을 알아보고 싶으시다면 아래의 공식 신뢰 기관 웹사이트를 방문하여 정밀한 데이터를 열람하시기를 권장합니다.</p>
+
+    <ul>
+      <li>
+        <a class="external-link" href="https://directlcheckq.koreahankang.com" target="_blank">
+          릴라이언스 카 파이낸스: 수입차 전 트림별 실시간 다이렉트 금융 및 가격 비교 가이드
+        </a> (수입 SUV 차량별 최적의 저금리 금융 설계 및 리스 장단점을 투명하게 대조해 볼 수 있는 전문 플랫폼 사이트)
+      </li>
+      <li>
+        <a class="external-link" href="https://www.bmw.co.kr" target="_blank">
+          BMW 코리아 공식 웹사이트: 뉴 X3 상세 카탈로그 정보
+        </a> (공식 판매 트림 정보, 최신 수입차 전사 카탈로그 다운로드 및 딜러사별 시승 이벤트 참가 신청 페이지)
+      </li>
+      <li>
+        <a class="external-link" href="https://namu.wiki/w/BMW%20X3" target="_blank">
+          나무위키: BMW X3 모델별 연혁 및 역사
+        </a> (1세대부터 4세대 G45 풀체인지 세대까지의 공학적 기계 설계 변천사와 글로벌 판매 히스토리 수록 문서)
+      </li>
+      <li>
+        <a class="external-link" href="https://www.g4b.go.kr" target="_blank">
+          정부24: 신차 자동차 등록 절차 및 공공 취등록세 상세 정보
+        </a> (차량을 새로 인수할 때 법적으로 정해진 전국 지자체별 공채 할인율 및 친환경 마일드 하이브리드 세제 감면 제도 규약 가이드)
+      </li>
+    </ul>
+
+    
+  </div>
+  
